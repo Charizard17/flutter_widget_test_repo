@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import './text_control.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -12,9 +14,7 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-
 class _MyAppState extends State<MyApp> {
-
   int initialIndex = 0;
   void changeText() {
     setState(() {
@@ -31,7 +31,6 @@ class _MyAppState extends State<MyApp> {
     return textttt;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,23 +39,20 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Flutter text changer'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Text(
-                showingText,
-                style: TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-              TextButton(
-                onPressed: changeText,
-                child: Text(
-                  'Change',
+        body: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                TextControl(),
+                Text(
+                  showingText,
                   style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
