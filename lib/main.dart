@@ -1,64 +1,96 @@
-// 1) Create a new Flutter App (in this project) and output an AppBar and some text
-// below it
-// 2) Add a button which changes the text (to any other text of your choice)
-// 3) Split the app into three widgets: App, TextControl & Text
-
 import 'package:flutter/material.dart';
-
-import './text_control.dart';
-import './mytext.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  int initialIndex = 0;
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-  void _changeText() {
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
     setState(() {
-      ++initialIndex;
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
     });
-    print('button pressed');
-  }
-
-  String get _showingText {
-    String textttt = initialIndex % 2 == 0
-        ? "This is a lorem ipsum text. I will change this text later."
-        : "This is the changed text!";
-    print(textttt);
-    return textttt;
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Test Title',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: Text('Flutter text changer'),
-        ),
-        body: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                TextControl(
-                  changeText: _changeText,
-                ),
-                MyText(
-                  showingText: _showingText,
-                ),
-              ],
-            ),
-          ),
-        ),
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
       ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Container(
+            height: 100,
+            child: Text('Item 1 - pretty big!'),
+            color: Colors.red,
+          ),
+          Container(
+            height: 100,
+            child: Text('Item 2'),
+            color: Colors.blue,
+          ),
+          Container(
+            height: 100,
+            child: Text('Item 3'),
+            color: Colors.orange,
+          ),
+        ],
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
