@@ -3,11 +3,15 @@ class Counter {
 
   int get count => _counter;
 
-  void incrementCounter() {
+  void increment() {
     ++_counter;
   }
 
-  void decrementCounter() {
+  void decrement() {
     --_counter;
+  }
+
+  void reset() {
+    _counter = 0;
   }
 }
