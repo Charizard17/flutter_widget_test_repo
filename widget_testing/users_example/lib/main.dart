@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:users_example/home_screen.dart';
+import 'package:users_example/user_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(
+        futureUsers: UserRepository().fetchUsers(),
+      ),
     );
   }
 }
