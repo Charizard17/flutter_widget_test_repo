@@ -20,7 +20,8 @@ void main() {
       final ctr2 = find.text('1');
       expect(ctr2, findsNothing);
 
-      final incrementBtn = find.byType(FloatingActionButton);
+      // final incrementBtn = find.byType(FloatingActionButton); // if there is only one widget with FloatingActionButton type
+      final incrementBtn = find.byKey(const Key('increment_counter'));
       await tester.tap(incrementBtn);
 
       await tester.pump();
